@@ -109,44 +109,43 @@ namespace OneBusAway.Pages
         /// </summary>
         public void NavigateToPageControlByArguments(string arguments)
         {
-            //IPageControl pageControl = null;
-            //object parameter = arguments;
+            IPageControl pageControl = null;
+            object parameter = arguments;
 
-            //if (string.IsNullOrEmpty(arguments))
-            //{
-            //    pageControl = new FavoritesPageControl();
-            //}
-            //else
-            //{
-            //    PageInitializationParameters parameters;
-            //    if (PageInitializationParameters.TryCreate(arguments, out parameters))
-            //    {
-            //        string pageControlName = parameters.GetParameter<string>("pageControl");
-            //        if (!string.IsNullOrEmpty(pageControlName))
-            //        {
-            //            // Make sure the type is a valid page control:
-            //            Type pageControlType = Type.GetType(pageControlName, false);
-            //            if (pageControlType != null)
-            //            {
-            //                pageControl = Activator.CreateInstance(pageControlType) as IPageControl;
-            //                parameter = parameters;
-            //            }
-            //        }
-            //    }
+            if (string.IsNullOrEmpty(arguments))
+            {
+                pageControl = new FavoritesPageControl();
+            }
+            else
+            {
+                PageInitializationParameters parameters;
+                if (PageInitializationParameters.TryCreate(arguments, out parameters))
+                {
+                    string pageControlName = parameters.GetParameter<string>("pageControl");
+                    if (!string.IsNullOrEmpty(pageControlName))
+                    {
+                        // Make sure the type is a valid page control:
+                        Type pageControlType = Type.GetType(pageControlName, false);
+                        if (pageControlType != null)
+                        {
+                            pageControl = Activator.CreateInstance(pageControlType) as IPageControl;
+                            parameter = parameters;
+                        }
+                    }
+                }
 
-            //    // We have a query string, but it's not structured in a way we expect, so let's assume it's a search query:
-            //    if (pageControl == null)
-            //    {
-            //        pageControl = new SearchResultsPageControl();
-            //    }
-            //}
+                // We have a query string, but it's not structured in a way we expect, so let's assume it's a search query:
+                if (pageControl == null)
+                {
+                    pageControl = new SearchResultsPageControl();
+                }
+            }
 
-            //// Important: to make sure we don't time out opening OBA on ARM devices, load the page control when we idle.
-            //var ignored = this.Dispatcher.RunIdleAsync(async cb =>
-            //{
-            //    await NavigationController.Instance.NavigateToPageControlAsync(pageControl, parameter);
-            //    await this.TryRegisterBackgroundTask();
-            //});
+            // Important: to make sure we don't time out opening OBA on ARM devices, load the page control when we idle.
+            var ignored = this.Dispatcher.RunIdleAsync(async cb =>
+            {
+                await NavigationController.Instance.NavigateToPageControlAsync(pageControl, parameter);
+            });
         }
 
         /// <summary>
