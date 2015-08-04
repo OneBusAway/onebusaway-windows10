@@ -203,8 +203,24 @@
     <Compile Include="NavigationController.cs" />
     <Compile Include="NavigationControllerProxy.cs" />
     <Compile Include="PageControls\Enumerations.cs" />
+    <Compile Include="PageControls\FavoritesPageControl.xaml.cs">
+      <DependentUpon>FavoritesPageControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="PageControls\IPageControl.cs" />
     <Compile Include="PageControls\IPinablePageControl.cs" />
+    <Compile Include="PageControls\PageControlService.cs" />
+    <Compile Include="PageControls\RealTimePageControl.xaml.cs">
+      <DependentUpon>RealTimePageControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PageControls\SearchResultsPageControl.xaml.cs">
+      <DependentUpon>SearchResultsPageControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PageControls\TimeTablePageControl.xaml.cs">
+      <DependentUpon>TimeTablePageControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PageControls\TripDetailsPageControl.xaml.cs">
+      <DependentUpon>TripDetailsPageControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\IMainPage.cs" />
     <Compile Include="Pages\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
@@ -338,6 +354,26 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="MainPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="PageControls\FavoritesPageControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="PageControls\RealTimePageControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="PageControls\SearchResultsPageControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="PageControls\TimeTablePageControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="PageControls\TripDetailsPageControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
