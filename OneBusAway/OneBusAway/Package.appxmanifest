@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest" xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10" IgnorableNamespaces="uap mp">
-  <Identity Name="a8da9540-d33d-45f1-925f-09563ab2791d" Publisher="CN=mbraude" Version="1.0.0.0" />
+  <Identity Name="43039MJBSoftware.OneBusAway" Publisher="CN=ACBBFA9F-E0ED-4D10-87F8-1AFBA7940876" Version="1.1.0.0" />
   <mp:PhoneIdentity PhoneProductId="a8da9540-d33d-45f1-925f-09563ab2791d" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
     <DisplayName>OneBusAway</DisplayName>
@@ -15,10 +15,15 @@
   </Resources>
   <Applications>
     <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="OneBusAway.App">
-      <uap:VisualElements DisplayName="OneBusAway" Square150x150Logo="Assets\Square150x150Logo.png" Square44x44Logo="Assets\Square44x44Logo.png" Description="OneBusAway" BackgroundColor="transparent">
-        <uap:DefaultTile Wide310x150Logo="Assets\Wide310x150Logo.png">
+      <uap:VisualElements DisplayName="OneBusAway" Square150x150Logo="Assets\Square150x150Logo.png" Square44x44Logo="Assets\Square44x44Logo.png" Description="OneBusAway" BackgroundColor="#78AA36">
+        <uap:DefaultTile Wide310x150Logo="Assets\Wide310x150Logo.png" ShortName="OneBusAway" Square310x310Logo="Assets\LargeLogo.png">
+          <uap:ShowNameOnTiles>
+            <uap:ShowOn Tile="square150x150Logo" />
+            <uap:ShowOn Tile="wide310x150Logo" />
+            <uap:ShowOn Tile="square310x310Logo" />
+          </uap:ShowNameOnTiles>
         </uap:DefaultTile>
-        <uap:SplashScreen Image="Assets\SplashScreen.png" />
+        <uap:SplashScreen Image="Assets\SplashScreen.png" BackgroundColor="#78AA36" />
       </uap:VisualElements>
     </Application>
   </Applications>
