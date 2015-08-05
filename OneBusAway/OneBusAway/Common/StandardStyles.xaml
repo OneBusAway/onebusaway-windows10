@@ -51,6 +51,11 @@
         <Setter Property="FontSize"
                 Value="12" />
     </Style>
+
+    <Style TargetType="TextBlock">
+        <Setter Property="Foreground"
+                Value="White" />
+    </Style>
     
     <Style TargetType="ScrollViewer">
         <Setter Property="ZoomMode"
