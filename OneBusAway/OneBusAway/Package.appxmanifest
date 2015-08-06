@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest" xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10" IgnorableNamespaces="uap mp">
-  <Identity Name="43039MJBSoftware.OneBusAway" Publisher="CN=ACBBFA9F-E0ED-4D10-87F8-1AFBA7940876" Version="1.1.0.0" />
+  <Identity Name="43039MJBSoftware.OneBusAway" Publisher="CN=ACBBFA9F-E0ED-4D10-87F8-1AFBA7940876" Version="1.1.49.0" />
   <mp:PhoneIdentity PhoneProductId="a8da9540-d33d-45f1-925f-09563ab2791d" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
     <DisplayName>OneBusAway</DisplayName>

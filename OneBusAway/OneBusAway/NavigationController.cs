@@ -26,6 +26,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Threading.Tasks;
+using Windows.UI.Core;
 
 namespace OneBusAway
 {
@@ -74,12 +75,7 @@ namespace OneBusAway
         /// Command used to go to the time table page.
         /// </summary>
         private ObservableCommand goToTimeTablePageCommand;
-
-        /// <summary>
-        /// Command fires the go back command.
-        /// </summary>
-        private ObservableCommand goBackCommand;
-
+        
         /// <summary>
         /// Tells the current PageControl to refreshes its data.
         /// </summary>
@@ -176,9 +172,7 @@ namespace OneBusAway
             this.proxies = new List<WeakReference<NavigationControllerProxy>>();
             this.callbackTable = new ConditionalWeakTable<NavigationControllerProxy, PropertyChangedEventHandler>();
 
-            this.GoBackCommand = new ObservableCommand();
-            this.GoBackCommand.Executed += OnGoBackCommandExecuted;
-            this.allCommands.Add(this.GoBackCommand);
+            SystemNavigationManager.GetForCurrentView().BackRequested += OnGoBackCommandExecuted;
 
             this.GoToFavoritesPageCommand = new ObservableCommand();
             this.GoToFavoritesPageCommand.Executed += OnGoToFavoritesPageCommandExecuted;
@@ -346,21 +340,6 @@ namespace OneBusAway
             get
             {
                 return (this.pageControls.Count > 0);
-            }
-        }
-
-        /// <summary>
-        /// Gets / sets the go back command.
-        /// </summary>
-        public ObservableCommand GoBackCommand
-        {
-            get
-            {
-                return this.goBackCommand;
-            }
-            set
-            {
-                SetProperty(ref this.goBackCommand, value);
             }
         }
 
@@ -568,15 +547,17 @@ namespace OneBusAway
             }
                         
             this.MainPage.SetPageView(newPageControl);
-
+            
             if (this.CurrentPageControl != null)
             {
                 this.pageControls.Push(this.CurrentPageControl);
             }
 
+            this.SetBackButtonVisibility();
+
             this.CurrentPageControl = newPageControl;
             this.FirePropertyChanged("CanGoBack");
-
+            
             await newPageControl.InitializeAsync(parameter);
             await this.UpdateIsPinnableAsync(newPageControl);
             await this.RestartRefreshLoopAsync();            
@@ -673,15 +654,23 @@ namespace OneBusAway
         /// <summary>
         /// Called when the user goes back
         /// </summary>
-        private async Task OnGoBackCommandExecuted(object arg1, object arg2)
+        private async void OnGoBackCommandExecuted(object sender, BackRequestedEventArgs args)
         {
             var previousPageControl = this.pageControls.Pop();
             this.FirePropertyChanged("CanGoBack");
+            this.SetBackButtonVisibility();
+
             await previousPageControl.RestoreAsync();
 
             this.CurrentPageControl = previousPageControl;
             this.MainPage.SetPageView(previousPageControl);
             await this.UpdateIsPinnableAsync(this.CurrentPageControl);
+        }
+
+        private void SetBackButtonVisibility()
+        {
+            var backButtonVisibility = this.pageControls.Count > 0 ? AppViewBackButtonVisibility.Visible : AppViewBackButtonVisibility.Collapsed;
+            SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = backButtonVisibility;
         }
 
         /// <summary>

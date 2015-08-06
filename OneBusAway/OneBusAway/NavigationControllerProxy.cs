@@ -123,17 +123,6 @@ namespace OneBusAway
         }
 
         /// <summary>
-        /// Return the go back command.
-        /// </summary>
-        public ICommand GoBackCommand
-        {
-            get
-            {
-                return new ObservableCommandProxy(NavigationController.Instance.GoBackCommand);
-            }
-        }
-
-        /// <summary>
         /// Returns the refresh command.
         /// </summary>
         public ICommand RefreshCommand

@@ -99,28 +99,12 @@
               Margin="80,0,0,0">
 
             <Grid.ColumnDefinitions>
-                <ColumnDefinition x:Name="backButtonColumn"
-                                  Width="Auto" />
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
-
-            <!-- Only show the back button when we are not snapped and we can go back -->
-            <!-- Hacky way of doing multi-bindings :) -->
-            <Grid Grid.Column="0"
-                  Grid.Row="0"
-                  Grid.RowSpan="2"
-                  Visibility="{Binding IsSnapped, Converter={StaticResource boolToVisibilityConverter}, Source={StaticResource navigationControllerProxy}, ConverterParameter=True}">
-                <Button Style="{StaticResource BackButtonStyle}"
-                        VerticalAlignment="Bottom"
-                        HorizontalAlignment="Right"
-                        Visibility="{Binding CanGoBack, Source={StaticResource navigationControllerProxy}, Converter={StaticResource boolToVisibilityConverter}}"
-                        Command="{Binding GoBackCommand, Source={StaticResource navigationControllerProxy}}"
-                        Margin="0,0,0,-7" />
-            </Grid>
 
             <ctrls:ScalableTextBlock x:Name="littleHeaderTextBlock" 
                                      Grid.Column="1"
@@ -250,11 +234,6 @@
                 <VisualState x:Name="Default" />
                 <VisualState x:Name="IsSnapped">
                     <Storyboard>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="backButtonColumn"
-                                                       Storyboard.TargetProperty="Width">
-                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="0" />
-                        </ObjectAnimationUsingKeyFrames>
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="linksGrid"
                                                        Storyboard.TargetProperty="Visibility">
                             <DiscreteObjectKeyFrame KeyTime="0"

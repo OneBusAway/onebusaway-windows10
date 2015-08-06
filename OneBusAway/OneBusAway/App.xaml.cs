@@ -22,6 +22,7 @@ using Windows.ApplicationModel.Activation;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Navigation;
 
 // The Blank Application template is documented at http://go.microsoft.com/fwlink/?LinkId=234227
 
@@ -66,7 +67,7 @@ namespace OneBusAway
             {
                 rootFrame = new Frame();
                 Window.Current.Content = rootFrame;
-
+                
                 rootFrame.Navigate(typeof(MainPage), args.Arguments);
             }
             else
