@@ -656,15 +656,23 @@ namespace OneBusAway
         /// </summary>
         private async void OnGoBackCommandExecuted(object sender, BackRequestedEventArgs args)
         {
-            var previousPageControl = this.pageControls.Pop();
-            this.FirePropertyChanged("CanGoBack");
-            this.SetBackButtonVisibility();
+            if (this.pageControls.Count == 0)
+            {
+                args.Handled = false;
+            }
+            else
+            {
+                args.Handled = true;
+                var previousPageControl = this.pageControls.Pop();
+                this.FirePropertyChanged("CanGoBack");
+                this.SetBackButtonVisibility();
 
-            await previousPageControl.RestoreAsync();
+                await previousPageControl.RestoreAsync();
 
-            this.CurrentPageControl = previousPageControl;
-            this.MainPage.SetPageView(previousPageControl);
-            await this.UpdateIsPinnableAsync(this.CurrentPageControl);
+                this.CurrentPageControl = previousPageControl;
+                this.MainPage.SetPageView(previousPageControl);
+                await this.UpdateIsPinnableAsync(this.CurrentPageControl);
+            }
         }
 
         private void SetBackButtonVisibility()

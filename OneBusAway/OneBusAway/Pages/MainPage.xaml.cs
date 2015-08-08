@@ -222,13 +222,5 @@ namespace OneBusAway.Pages
         //        await NavigationController.Instance.NavigateToPageControlAsync(PageControlTypes.SearchResults, args.QueryText);
         //    }
         //}
-        
-        /// <summary>
-        /// Called when the semi-transparent appbar is pressed.
-        /// </summary>
-        private void OnAppBarPointerReleased(object sender, PointerRoutedEventArgs e)
-        {
-            this.appBar.IsOpen = true;
-        }
     }
 }

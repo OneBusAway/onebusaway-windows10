@@ -66,7 +66,6 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" x:Name="snappedOrPortraitRow" />
             <RowDefinition Height="*" x:Name="defaultRow" />
-            <RowDefinition Height="16" x:Name="appBarLauncherRow" />
         </Grid.RowDefinitions>
 
         <!-- Header control -->
@@ -92,29 +91,6 @@
                           BusStops="{Binding BusStops, Mode=TwoWay}"
                           Shapes="{Binding Shapes}"
                           SelectedBusStop="{Binding SelectedBusStop, Mode=TwoWay}" />
-
-        <Grid Grid.Column="0"
-              Grid.Row="3"
-              Grid.ColumnSpan="2"
-              PointerReleased="OnAppBarPointerReleased"
-              Background="{StaticResource obaGreen}"
-              ToolTipService.ToolTip="Show more commands (Win + Z or right-click anywhere)"
-              HorizontalAlignment="Stretch">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="Auto" />
-            </Grid.ColumnDefinitions>
-            <ctrls:ScalableTextBlock Grid.Column="1"
-                                     Grid.Row="0"                                      
-                                     NormalFontSize="14"
-                                     SnappedFontSize="14"
-                                     Margin="0,-3,60,0"
-                                     HorizontalTextAlignment="Center"
-                                     VerticalTextAlignment="Center"
-                                     FontFamily="Segoe UI Symbol"
-                                     Text="&#xE0C2;" />
-        </Grid>
-
 
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup>
